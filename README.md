@@ -34,7 +34,7 @@ The "Glory of Youth" project is an integrated system combining:
 - HTML/CSS for basic structure
 - JavaScript for interactivity
 
-## � How to Run
+##  How to Run
 
 ### Analysis Module
 ```bash
