@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report the Analysis of Dribbling Skills</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #1A73E8;
+            margin: 0;
+            font-size: 2.0rem;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+        }
+
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3A9B4C;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .report-container {
+            display: none;
+        }
+
+        .report-header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .report-title {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .report-info {
+            display: flex;
+            flex-wrap: wrap;
+            text-align: left;
+            direction: ltr;
+          
+        }
+
+        .info-item {
+            margin: 0 15px;
+            text-align: center;
+            flex-wrap: wrap;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .info-item p {
+            margin: 5px 0;
+            color: #666;
+            flex-wrap: wrap;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+            direction: ltr;
+            
+        }
+
+        .stat-card {
+            flex: 1;
+            min-width: 180px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #3A9B4C;
+        }
+
+        .summary-section,
+        .skills-section,
+        .errors-section,
+        .recommendation-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+
+        .skill-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #1A73E8 ;
+        }
+
+        .skill-rating {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .rating-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #3A9B4C;
+        }
+
+        .rating-scale {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .rating-bar {
+            height: 8px;
+            background-color: #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .rating-fill {
+            height: 100%;
+            background-color:#66bb6a;
+            border-radius: 4px;
+        }
+
+        .errors-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .error-item {
+            background-color: #fff8f8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #f56565;
+        }
+
+        .error-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .error-count {
+            background-color: #f56565;
+            color: white;
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 0.9rem;
+        }
+
+        .recommendation-item {
+            background-color:#e6ffec;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #28a745;
+        }
+
+        .thumbnail-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .thumbnail {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #3A9B4C;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color:  #ffffff;
+            color:#3A9B4C;
+            border: 2px solid #3A9B4C ;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+    
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .report-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .report-info {
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .stats-container,
+            .skills-grid {
+                flex-direction: column;
+            }
+        }
+
+        /* نمط جديد للمراوغات الصحيحة والخاطئة */
+        .good-dribble {
+            color: #1e7d32;
+        }
+
+        .bad-dribble {
+            color: #c62828;
+        }
+
+        .dribble-comparison {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        .dribble-card {
+            flex: 1;
+            min-width: 250px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .good-dribble-card {
+            background-color: #e8f5e9;
+            border: 1px solid  #66bb6a;
+        }
+
+        .bad-dribble-card {
+            background-color:   #ffebee;
+            border: 1px solid  #ef5350;
+        }
+
+        .dribble-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .reason-tag {
+            display: inline-block;
+            background-color:  #ffebeb;
+            color: #dc3545;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin: 5px;
+            font-size: 0.8rem;
+        }
+
+        .improvement-box {
+            background-color: #E3F2FD;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #1A73E8;
+            text-align: left;
+            direction: ltr;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Report the Analysis of Dribbling Skills</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="loadingSection" class="loading">
+            <div class="loading-spinner"></div>
+            <p>Loading analysis report...</p>
+        </div>
+
+        <div id="reportContainer" class="report-container">
+            <div class="report-header">
+                <div class="report-title">
+                    <h2>Report the Analysis of Dribbling Skills</h2>
+                    <div id="reportInfo" class="report-info">
+                        <div class="info-item">
+                            <p>Analysis Date:</p>
+                            <p id="analysisDate">-</p>
+                        </div>
+                        <div class="info-item">
+                            <p>Video Time:</p>
+                            <p id="videoDuration">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <p>Correct dribbles</p>
+                    <div id="dribblesCount" class="stat-value good-dribble">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <p>Incorrect dribbles</p>
+                    <div id="badDribblesCount" class="stat-value bad-dribble">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <p>Feinting movement</p>
+                    <div id="FeintingCount" class="stat-value">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <p>Feinting Quality</p>
+                    <div id="FeintingQuality" class="stat-value">0%</div>
+                </div>
+
+                <div class="stat-card">
+                    <p>Overall performance</p>
+                    <div id="overallPerformance" class="stat-value">0%</div>
+                </div>
+
+                <div class="stat-card">
+                    <p>Ball control</p>
+                    <div id="ballControl" class="stat-value">0%</div>
+                </div>
+            </div>
+
+            <!-- مقارنة المراوغات الصحيحة والخاطئة (جديد) -->
+            <div id="dribbleComparisonSection" class="summary-section">
+                <h2>Dribbling analysis: correct vs. incorrect</h2>
+
+                <div class="dribble-comparison">
+                    <div class="dribble-card good-dribble-card">
+                        <h3>Correct dribbles</h3>
+                        <div id="goodDribblesValue" class="dribble-value good-dribble">0</div>
+                        <p>Characteristics of successful dribbling</p>
+                        <ul id="goodDribbleTraits" style="text-align: right;">
+                            <li>The ball is near the feet(< 80 pixels)</li>
+                            <li>Proper knee flexion for good control</li>
+                            <li>sufficient foot speed (> 60)</li>
+                        </ul>
+                    </div>
+
+                    <div class="dribble-card bad-dribble-card">
+                        <h3>incorrect dribbling</h3>
+                        <div id="badDribblesValue" class="dribble-value bad-dribble">0</div>
+                        <p>Reasons for incorrect dribbling :</p>
+                        <div id="badDribbleReasons">
+                            <!-- سيتم إضافة الأسباب ديناميكياً -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dribbleImprovementTips" class="improvement-box">
+                    <h3>Advice for enhancing dribbling skills</h3>
+                    <div id="dribbleImprovementContent">
+                        <!-- سيتم إضافة النصائح ديناميكياً -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <h2>Analysis summary</h2>
+                <div id="analysisContent">
+                    <!-- محتوى التحليل سيضاف ديناميكياً -->
+                </div>
+
+                <div class="thumbnail-container">
+                    <img id="analysisThumbnail" class="thumbnail" src="" alt="لقطة من تحليل المراوغة"
+                        style="display: none;">
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h2>Skills assessment</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-name">dribbling</div>
+                        <div class="skill-rating">
+                            <div id="dribblingRating" class="rating-value">0</div>
+                            <div class="rating-scale">/10</div>
+                        </div>
+                        <div class="rating-bar">
+                            <div id="dribblingRatingBar" class="rating-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-name">Ball control</div>
+                        <div class="skill-rating">
+                            <div id="ballControlRating" class="rating-value">0</div>
+                            <div class="rating-scale">/10</div>
+                        </div>
+                        <div class="rating-bar">
+                            <div id="ballControlRatingBar" class="rating-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-name">Feinting</div>
+                        <div class="skill-rating">
+                            <div id="FeintingRating" class="rating-value">0</div>
+                            <div class="rating-scale">/10</div>
+                        </div>
+                        <div class="rating-bar">
+                            <div id="FeintingRatingBar" class="rating-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-name">Agility</div>
+                        <div class="skill-rating">
+                            <div id="agilityRating" class="rating-value">0</div>
+                            <div class="rating-scale">/10</div>
+                        </div>
+                        <div class="rating-bar">
+                            <div id="agilityRatingBar" class="rating-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="errors-section">
+                <h2>Common processing errors</h2>
+                <ul id="errorsList" class="errors-list">
+                    <!-- قائمة الأخطاء ستضاف ديناميكياً -->
+                </ul>
+            </div>
+
+            <div class="footer-buttons">
+                <a href="/" class="btn btn-primary">New video analysis</a>
+                <a href="#" id="downloadBtn" class="btn btn-secondary">Download the report</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loadingSection = document.getElementById('loadingSection');
+            const reportContainer = document.getElementById('reportContainer');
+            const analysisDate = document.getElementById('analysisDate');
+            const videoDuration = document.getElementById('videoDuration');
+            const dribblesCount = document.getElementById('dribblesCount');
+            const badDribblesCount = document.getElementById('badDribblesCount'); // جديد
+            const FeintingCount = document.getElementById('FeintingCount');
+            const FeintingQuality = document.getElementById('FeintingQuality');
+            const overallPerformance = document.getElementById('overallPerformance');
+            const ballControl = document.getElementById('ballControl');
+            const analysisContent = document.getElementById('analysisContent');
+            const analysisThumbnail = document.getElementById('analysisThumbnail');
+            const dribblingRating = document.getElementById('dribblingRating');
+            const dribblingRatingBar = document.getElementById('dribblingRatingBar');
+            const ballControlRating = document.getElementById('ballControlRating');
+            const ballControlRatingBar = document.getElementById('ballControlRatingBar');
+            const FeintingRating = document.getElementById('FeintingRating');
+            const FeintingRatingBar = document.getElementById('FeintingRatingBar');
+            const agilityRating = document.getElementById('agilityRating');
+            const agilityRatingBar = document.getElementById('agilityRatingBar');
+            const errorsList = document.getElementById('errorsList');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            // العناصر الجديدة للمراوغات الخاطئة
+            const goodDribblesValue = document.getElementById('goodDribblesValue');
+            const badDribblesValue = document.getElementById('badDribblesValue');
+            const badDribbleReasons = document.getElementById('badDribbleReasons');
+            const dribbleImprovementContent = document.getElementById('dribbleImprovementContent');
+
+            // الحصول على معرف التحليل من الرابط
+            const urlParams = new URLSearchParams(window.location.search);
+            const analysisId = urlParams.get('analysis_id');
+
+            if (!analysisId) {
+                // إذا لم يتم تحديد معرف التحليل، نظهر رسالة خطأ
+                loadingSection.innerHTML = '<p>Error: No analysis is specified for the display</p>';
+                return;
+            }
+
+            // الحصول على بيانات التحليل
+            fetch(`/get_analysis/${analysisId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load the report');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // إخفاء قسم التحميل وإظهار التقرير
+                    loadingSection.style.display = 'none';
+                    reportContainer.style.display = 'block';
+
+                    // ملء معلومات التقرير
+                    if (data.timestamp) {
+                        analysisDate.textContent = data.timestamp;
+                    }
+
+                    if (data.time) {
+                        videoDuration.textContent = `${data.time.toFixed(1)} seconds`;
+                    }
+
+                    // ملء الإحصاءات
+                    if (data.dribbles !== undefined) {
+                        dribblesCount.textContent = data.dribbles;
+                        goodDribblesValue.textContent = data.dribbles;
+                    }
+
+                    // ملء عدد المراوغات الخاطئة (جديد)
+                    if (data.bad_dribbles !== undefined) {
+                        badDribblesCount.textContent = data.bad_dribbles;
+                        badDribblesValue.textContent = data.bad_dribbles;
+
+                        // إضافة أسباب المراوغات الخاطئة إذا كانت متوفرة
+                        if (data.bad_dribble_reasons && data.bad_dribble_reasons.length > 0) {
+                            let reasonsHTML = '';
+                            data.bad_dribble_reasons.forEach(reason => {
+                                reasonsHTML += `<span class="reason-tag">${reason[0]} (${reason[1]})</span>`;
+                            });
+                            badDribbleReasons.innerHTML = reasonsHTML;
+                        } else {
+                            badDribbleReasons.innerHTML = '<p>No specific causes have been identified</p>';
+                        }
+                    }
+
+                    if (data.Feinting !== undefined) {
+                        FeintingCount.textContent = data.Feinting;
+                    }
+
+                    if (data.Feinting_quality !== undefined) {
+                        FeintingQuality.textContent = `${data.Feinting_quality}%`;
+                    }
+
+                    if (data.performance !== undefined) {
+                        overallPerformance.textContent = `${data.performance}%`;
+                    }
+
+                    if (data.ball_control !== undefined) {
+                        ballControl.textContent = `${data.ball_control}%`;
+                    }
+
+                    // نصائح تحسين المراوغة
+                    if (data.tips) {
+                        dribbleImprovementContent.innerHTML = `<p>${data.tips}</p>`;
+                    } else {
+                        dribbleImprovementContent.innerHTML = `
+                            <ul>
+                                <li>Keep the ball close to your feet while dribbling (distance less than 60 cm)</li>
+                                <li>Bend your knees slightly for better balance and greater ball control</li>
+                                <li>"Try to perform dribbles at a moderate speed initially, then increase the speed as your control improves</li>
+                            </ul>
+                        `;
+                    }
+
+                    // ملء ملخص التحليل
+                    if (data.summary) {
+                        analysisContent.innerHTML = `<p>${data.summary}</p>`;
+                    }
+
+                    // عرض الصورة المصغرة إذا كانت متوفرة
+                    if (data.thumbnail) {
+                        analysisThumbnail.src = data.thumbnail;
+                        analysisThumbnail.style.display = 'block';
+                    }
+
+                    // ملء تقييمات المهارات
+                    if (data.skills) {
+                        if (data.skills.dribbling !== undefined) {
+                            dribblingRating.textContent = data.skills.dribbling;
+                            dribblingRatingBar.style.width = `${data.skills.dribbling * 10}%`;
+                        }
+
+                        if (data.skills.ball_control !== undefined) {
+                            ballControlRating.textContent = data.skills.ball_control;
+                            ballControlRatingBar.style.width = `${data.skills.ball_control * 10}%`;
+                        }
+
+                        if (data.skills.Feinting_technique !== undefined) {
+                            FeintingRating.textContent = data.skills.Feinting_technique;
+                            FeintingRatingBar.style.width = `${data.skills.Feinting_technique * 10}%`;
+                        }
+
+                        if (data.skills.agility !== undefined) {
+                            agilityRating.textContent = data.skills.agility;
+                            agilityRatingBar.style.width = `${data.skills.agility * 10}%`;
+                        }
+                    }
+
+                    // ملء قائمة الأخطاء
+                    if (data.top_errors && data.top_errors.length > 0) {
+                        let errorsHTML = '';
+                        data.top_errors.forEach(error => {
+                            errorsHTML += `
+                                <li class="error-item">
+                                    <div class="error-title">
+                                        <h3>${error.error}</h3>
+                                        <span class="error-count">${error.count} Times</span>
+                                    </div>
+                                </li>
+                            `;
+                        });
+                        errorsList.innerHTML = errorsHTML;
+                    } else {
+                        errorsList.innerHTML = '<p>No recurring errors identified</p>';
+                    }
+
+                    // تعيين رابط تحميل التقرير
+                    downloadBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        // إنشاء كائن لتحويل التقرير إلى نص
+                        const reportText = `
+                          Report on the Analysis of Dribbling Skills 
+                            ========================================
+                            Analysis Date :${data.timestamp || '-'}
+                            : Video Duration : ${data.time ? data.time.toFixed(1) + ' seconds' : '-'}
+                            
+                            Statistics :
+                            - Correct dribbles :${data.dribbles || 0}
+                            - incorrect dribbles :${data.bad_dribbles || 0}
+                            - Feinting Movements :${data.Feinting || 0}
+                            - Feinting Quality :${data.Feinting_quality || 0}%
+                            - Overall Performance :${data.performance || 0}%
+                            - Ball Control :${data.ball_control || 0}%
+                            
+                            Skills Assessment :
+                            - dribbling :${data.skills?.dribbling || 0}/10
+                            - Ball Control : ${data.skills?.ball_control || 0}/10
+                            - Feinting skill : ${data.skills?.Feinting_technique || 0}/10
+                            - Agility :${data.skills?.agility || 0}/10
+                            
+                            Analysis summary :
+                            ${data.summary || 'No summary available'}
+                            
+                            Tips for improving dribbling : 
+                            ${data.tips || '-Keep the ball close to your feet\n-Bend your knees slightly for better control\n-Practice changing speed and direction while dribbling'}
+                        `;
+
+                        // إنشاء رابط تحميل
+                        const blob = new Blob([reportText], { type: 'text/plain' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `Dribbling analysis${analysisId}.txt`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    loadingSection.innerHTML = `<p>Error loading report : ${error.message}</p>`;
+                });
+
+            // تنظيف التحليلات القديمة لتوفير مساحة
+            fetch('/clear_old_analysis', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => console.log('Old analytics cleaned up:', data))
+                .catch(error => console.error('Error cleaning up old analytics:', error));
+        });
+    </script>
+</body>
+
+</html>

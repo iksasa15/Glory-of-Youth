@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ar"dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis of dribbling and feinting skills in football</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            
+        }
+
+        h1 {
+            color: #1A73E8 ;
+            margin: 0;
+            font-size: 2.0rem;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .upload-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            text-align: center;
+    
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-label {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #3A9B4C;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .file-label:hover {
+            background-color: #3A9B4C;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .file-name {
+            display: block;
+            margin-bottom: 20px;
+            color: #888;
+        }
+
+        .analyze-btn {
+            padding: 14px 40px;
+            background-color:#3A9B4C;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .analyze-btn:hover {
+            background-color: #3A9B4C;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .analyze-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-section {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .status-container {
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .progress-container {
+            height: 8px;
+            background-color: #ddd;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #3A9B4C;
+            transition: width 0.3s ease;
+        }
+            .btn-dark {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 14px 40px;
+            background-color: #3A9B4C;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-dark:hover {
+            background-color:#3A9B4C;
+            transform: translateY(-2px);
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .upload-section,
+            .result-section {
+                padding: 20px;
+               
+            }
+
+            .file-label,
+            .analyze-btn {
+                padding: 10px 25px;
+               
+            }
+
+            .feature-item {
+                min-width: 250px;
+            }
+        }
+
+        /* نمط للمراوغات الجيدة والسيئة */
+        .good-dribble {
+            background-color: #d4f8e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            border-left: 4px solid #28a745;
+        }
+
+        .bad-dribble {
+            background-color: #ffd6d6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            border-left: 4px solid #dc3545;
+        }
+
+        .tip-box {
+            background-color:#E3F2FD;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-left: 4px solid #1A73E8;
+            text-align: left;
+            direction: ltr;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Analysis of dribbling and feinting skills in football</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="upload-section">
+            <h2>Upload a video of your dribbling and feinting for analysis using AI</h2>
+
+            <input type="file" accept="video/*" id="videoUpload" class="file-input">
+            <label for="videoUpload" class="file-label">Select the dribbling video</label>
+            <span id="fileName" class="file-name"></span>
+
+            <button id="analyzeBtn" class="analyze-btn" disabled>Start dribbling analysis</button>
+        </section>
+
+        <section id="resultSection" class="result-section">
+            <h2>Analysis Results:</h2>
+
+            <div class="video-container">
+                <img id="videoFeed" src="" alt="Dribbling Analysis" style="width: 100%;">
+            </div>
+
+            <div id="statusText" class="status-container">
+                <h3>Analyzing...</h3>
+                <div class="progress-container">
+                    <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+                </div>
+                <p>Please wait while the video is being analyzed...</p>
+            </div>
+
+            <div id="correctMovementsSection" style="display: none; text-align: left; margin-top: 20px;">
+                <h3>Correct Movements for Skills</h3>
+                <video id="correctMovementsVideo" controls style="max-width: 100%;">
+                    <source src="correct_movements.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a id="reportBtn" class="btn-dark" style="display: none; margin: 0 auto; cursor: pointer;">Display the report</a>
+            </div>
+        </section>
+        <script>
+ document.addEventListener('DOMContentLoaded', function () {
+            const videoUpload = document.getElementById('videoUpload');
+            const fileName = document.getElementById('fileName');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const resultSection = document.getElementById('resultSection');
+            const videoFeed = document.getElementById('videoFeed');
+            const statusText = document.getElementById('statusText');
+            const progressBar = document.getElementById('progressBar');
+            const reportBtn = document.getElementById('reportBtn');
+
+            let analysisId = null;
+            let checkInterval = null;
+
+            // When a file is selected
+            videoUpload.addEventListener('change', function () {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    fileName.textContent = file.name;
+                    analyzeBtn.disabled = false;
+                } else {
+                    fileName.textContent = '';
+                    analyzeBtn.disabled = true;
+                }
+            });
+
+            // When analyze button is clicked
+            analyzeBtn.addEventListener('click', function () {
+                if (!videoUpload.files || !videoUpload.files[0]) {
+                    alert('Please select a video first');
+                    return;
+                }
+
+                // Create FormData to send the file
+                const formData = new FormData();
+                formData.append('video', videoUpload.files[0]);
+
+                // Disable analyze button and show results section
+                analyzeBtn.disabled = true;
+                resultSection.style.display = 'block';
+                statusText.innerHTML = `
+                    <h3>Preparing analysis...</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 10%;"></div>
+                    </div>
+                    <p>Please wait...</p>
+                `;
+
+                // Send request to server
+                fetch('/analyze', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            throw new Error(data.error);
+                        }
+
+                        analysisId = data.analysis_id;
+
+                        // Set video source to show analysis live stream
+                        videoFeed.src = data.stream_url;
+
+                        // Start checking analysis status
+                        checkAnalysisStatus();
+
+                        // Show analysis start message
+                        statusText.innerHTML = `
+                        <h3>Analyzing video...</h3>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 20%;"></div>
+                        </div>
+                        <p>Detecting and analyzing dribbling moves...</p>
+                    `;
+
+                        // Gradually update progress bar
+                        setTimeout(() => {
+                            progressBar.style.width = '50%';
+                        }, 3000);
+                    })
+                    .catch(error => {
+                        statusText.innerHTML = `<h3>Error occurred</h3><p>${error.message}</p>`;
+                        analyzeBtn.disabled = false;
+                    });
+            });
+
+        
+                // Check analysis status
+                function checkAnalysisStatus() {
+                    checkInterval = setInterval(function () {
+                    fetch('/analysis_status')
+                        .then(response => response.json())
+                        .then(data => {
+                            if (!data.is_analyzing) {
+                                clearInterval(checkInterval);
+                                progressBar.style.width = '100%';
+                            }
+
+                            // Display temporary analysis results
+                            updateResults(data.results);
+                        })
+                        .catch(error => {
+                            console.error('Error checking analysis status:', error);
+                        });
+                }, 1000);
+                                // Save analysis thumbnail
+                                if (analysisId) {
+                                    saveAnalysisThumbnail();
+                                }
+
+                                // Show coach report button
+                                reportBtn.style.display = 'inline-block';
+                                reportBtn.href = `/finish_analysis`;
+                    
+                    // 1. عرض الفيديو أولاً
+                    document.getElementById('correctMovementsSection').style.display = 'block';
+                    
+                    // 2. ثم عرض زر التقرير
+                    reportBtn.style.display = 'inline-block';
+                    reportBtn.href = `/coach_dribbling.html?analysis_id=${analysisId}`;
+                    function updateResults(results) {
+                if (!results) return;
+
+                let progress = 20;
+
+                // Check if analysis is complete
+                if (results.analysis_complete) {
+                    progress = 100;
+                } else if (results.time) {
+                    // Calculate analysis progress based on elapsed time
+                    progress = Math.min(95, 20 + results.time * 2);
+                }
+
+                // Update progress bar
+                progressBar.style.width = `${progress}%`;
+
+                // Create results display
+                let htmlStatus = `<h3>Analysis progress (${Math.round(progress)}%)</h3>`;
+
+                if (results.error) {
+                    htmlStatus += `<p class="error">Error: ${results.error}</p>`;
+                } else {
+                    htmlStatus += `<div class="progress-container">
+                                    <div class="progress-bar" style="width: ${progress}%"></div>
+                                  </div>`;
+
+                    // Add analysis details
+                    // Modified to show correct and incorrect dribbles
+                    htmlStatus += `<p>Correct dribbles: ${results.dribbles}</p>`;
+                    htmlStatus += `<p>Incorrect dribbles: ${results.bad_dribbles || 0}</p>`;
+
+                    // Feinting moves and other statistics
+                    htmlStatus += `<p>Feinting moves: ${results.Feinting}</p>`;
+                    htmlStatus += `<p>Elapsed time: ${results.time.toFixed(1)} seconds</p>`;
+                    htmlStatus += `<p>Ball control level: ${results.ball_control || 0}%</p>`;
+
+                    // Display AI tips
+                    if (results.tips) {
+                        htmlStatus += `<div class="tip-box">
+                                        <strong>Coach tips:</strong><br>
+                                        ${results.tips}
+                                      </div>`;
+                    }
+
+                    // If analysis is complete, show summary
+                    if (results.analysis_complete) {
+                        htmlStatus = '<h3>Analysis completed!</h3>';
+                        let htmlResults = '<div style="text-align: center;">';
+                        htmlResults += '<h3>Analysis Summary:</h3>';
+
+                        // Show correct dribbles
+                        htmlResults += `<div style="display: inline-block; margin: 10px; padding: 15px; background-color: #e6ffec; border-radius: 8px;">
+                                        <p style="font-size: 24px; font-weight: bold;">${results.dribbles}</p>
+                                        <p>Correct dribbles</p>
+                                    </div>`;
+
+                        // Show incorrect dribbles
+                        htmlResults += `<div style="display: inline-block; margin: 10px; padding: 15px; background-color: #ffebeb; border-radius: 8px;">
+                                        <p style="font-size: 24px; font-weight: bold;">${results.bad_dribbles || 0}</p>
+                                        <p>Incorrect dribbles</p>
+                                    </div>`;
+
+                        // Feinting moves
+                        htmlResults += `<div style="display: inline-block; margin: 10px; padding: 15px; background-color: #fff3cd; border-radius: 8px;">
+                                        <p style="font-size: 24px; font-weight: bold;">${results.Feinting}</p>
+                                        <p>Feinting moves</p>
+                                    </div>`;
+
+                        // Ball control quality
+                        htmlResults += `<div style="display: inline-block; margin: 10px; padding: 15px; background-color: #d1ecf1; border-radius: 8px;">
+                                        <p style="font-size: 24px; font-weight: bold;">${results.ball_control || 0}%</p>
+                                        <p>Ball control</p>
+                                    </div>`;
+
+                        htmlResults += '</div>';
+
+                        // Add warnings or key tips
+                        if (results.warnings) {
+                            htmlResults += `<div class="bad-dribble" style="margin-top: 20px;">
+                                            <h4>Areas needing improvement:</h4>
+                                            <p>${results.warnings}</p>
+                                          </div>`;
+                        }
+
+                        // Add coach tips
+                        if (results.tips) {
+                            htmlResults += `<div class="tip-box" style="margin-top: 20px;">
+                                            <h4>Coach tips:</h4>
+                                            <p>${results.tips}</p>
+                                          </div>`;
+                        }
+
+                        // Add full report button
+                        htmlResults += `<p style="margin-top: 20px;">To view detailed report and customized recommendations:</p>`;
+
+                        htmlStatus += htmlResults;
+                    }
+                }
+
+                // Update UI text
+                statusText.innerHTML = htmlStatus;
+            }
+
+            // Save analysis thumbnail
+            function saveAnalysisThumbnail() {
+                const formData = new FormData();
+                formData.append('analysis_id', analysisId);
+
+                fetch('/save_analysis_thumbnail', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Thumbnail saved:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error saving thumbnail:', error);
+                    });
+            }
+      }  });
+    </script>
+ 
+    </body>
+    </html>
