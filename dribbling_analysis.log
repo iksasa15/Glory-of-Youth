@@ -1,0 +1,328 @@
+2025-04-17 22:54:38,189 - config - ERROR - «·„·› «·„ÿ·Ê» home_dribbling.html €Ì— „ÊÃÊœ
+2025-04-17 22:54:38,190 - config - ERROR - «·„·› «·„ÿ·Ê» coach_dribbling.html €Ì— „ÊÃÊœ
+2025-04-17 22:54:38,190 - config - INFO - »œ¡ Œ«œ„  Õ·Ì· „—«Ê€… ﬂ—… «·ﬁœ„
+2025-04-17 22:54:39,195 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.200:5000
+2025-04-17 22:54:39,195 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-17 22:54:39,197 - werkzeug - INFO -  * Restarting with stat
+2025-04-17 22:54:44,843 - config - ERROR - «·„·› «·„ÿ·Ê» home_dribbling.html €Ì— „ÊÃÊœ
+2025-04-17 22:54:44,844 - config - ERROR - «·„·› «·„ÿ·Ê» coach_dribbling.html €Ì— „ÊÃÊœ
+2025-04-17 22:54:44,844 - config - INFO - »œ¡ Œ«œ„  Õ·Ì· „—«Ê€… ﬂ—… «·ﬁœ„
+2025-04-17 22:54:44,849 - werkzeug - WARNING -  * Debugger is active!
+2025-04-17 22:54:44,863 - werkzeug - INFO -  * Debugger PIN: 118-215-698
+2025-04-17 22:56:08,244 - config - INFO - »œ¡ Œ«œ„  Õ·Ì· „—«Ê€… ﬂ—… «·ﬁœ„
+2025-04-17 22:56:09,249 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.200:5000
+2025-04-17 22:56:09,250 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-17 22:56:09,251 - werkzeug - INFO -  * Restarting with stat
+2025-04-17 22:56:13,992 - config - INFO - »œ¡ Œ«œ„  Õ·Ì· „—«Ê€… ﬂ—… «·ﬁœ„
+2025-04-17 22:56:13,997 - werkzeug - WARNING -  * Debugger is active!
+2025-04-17 22:56:14,012 - werkzeug - INFO -  * Debugger PIN: 118-215-698
+2025-04-17 22:56:25,167 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:56:25] "GET / HTTP/1.1" 200 -
+2025-04-17 22:56:25,323 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:56:25] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 22:56:25,326 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:56:25] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 22:56:25,347 - config - ERROR - Œÿ√ ›Ì Œœ„… favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 22:56:25,347 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:56:25] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 22:56:27,430 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:56:27] "GET / HTTP/1.1" 200 -
+2025-04-17 22:56:33,389 - config - INFO - »œ¡  Õ·Ì· „—«Ê€… «·›ÌœÌÊ: uploaded_video_5604f22b-0dc2-467a-8ea0-ddfb5baa809b.mp4
+2025-04-17 22:56:33,390 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:56:33] "POST /analyze HTTP/1.1" 200 -
+2025-04-17 22:56:33,395 - config - INFO - Œ’«∆’ «·›ÌœÌÊ: 560x496, 30.0 FPS, 312 ≈ÿ«—« 
+2025-04-17 22:56:33,412 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:56:33] "POST /save_analysis_thumbnail HTTP/1.1" 200 -
+2025-04-17 22:56:33,418 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:56:33] "GET /video_feed HTTP/1.1" 200 -
+2025-04-17 22:56:34,399 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:56:34] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 22:56:34,798 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 22:56:34,798 - config - ERROR - Œÿ√ ›Ì «” œ⁄«¡ GPT: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 22:56:41,019 - config - INFO -  „ «·Ê’Ê· ≈·Ï ‰Â«Ì… «·›ÌœÌÊ
+2025-04-17 22:56:41,036 - config - INFO - «ﬂ „·  Õ·Ì· «·›ÌœÌÊ: 11 „—«Ê€« ° 6 Õ—ﬂ«  Œœ«⁄
+2025-04-17 22:56:41,264 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 22:56:41,265 - config - ERROR - Œÿ√ ›Ì ≈‰‘«¡ „·Œ’ GPT: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 22:56:41,265 - config - INFO - «ﬂ „· „”«— «· Õ·Ì·
+2025-04-17 22:57:45,938 - config - ERROR - Œÿ√ ›Ì Œœ„… favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 22:57:45,938 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:57:45] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 22:57:46,234 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:57:46] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 22:58:02,688 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:58:02] "GET /coach_dribbling.html?analysis_id=5604f22b-0dc2-467a-8ea0-ddfb5baa809b HTTP/1.1" 200 -
+2025-04-17 22:58:02,713 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:58:02] "GET /get_analysis/5604f22b-0dc2-467a-8ea0-ddfb5baa809b HTTP/1.1" 200 -
+2025-04-17 22:58:02,714 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:58:02] "POST /clear_old_analysis HTTP/1.1" 200 -
+2025-04-17 22:58:02,716 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:58:02] "GET /coach_dribbling.html?analysis_id=5604f22b-0dc2-467a-8ea0-ddfb5baa809b HTTP/1.1" 200 -
+2025-04-17 22:58:02,742 - config - ERROR - Œÿ√ ›Ì Œœ„… favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 22:58:02,743 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:58:02] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 22:58:10,290 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:58:10] "GET / HTTP/1.1" 200 -
+2025-04-17 22:58:10,314 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:58:10] "GET / HTTP/1.1" 200 -
+2025-04-17 22:58:10,321 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:58:10] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 22:58:10,340 - config - ERROR - Œÿ√ ›Ì Œœ„… favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 22:58:10,341 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 22:58:10] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:03:02,966 - werkzeug - INFO -  * Detected change in 'E:\\Glory-of-Youth\\config.py', reloading
+2025-04-17 23:03:04,039 - werkzeug - INFO -  * Restarting with stat
+2025-04-17 23:03:11,078 - config - INFO - »œ¡ Œ«œ„  Õ·Ì· „—«Ê€… ﬂ—… «·ﬁœ„
+2025-04-17 23:03:11,084 - werkzeug - WARNING -  * Debugger is active!
+2025-04-17 23:03:11,101 - werkzeug - INFO -  * Debugger PIN: 118-215-698
+2025-04-17 23:03:15,584 - werkzeug - INFO -  * Detected change in 'E:\\Glory-of-Youth\\movement_tracker.py', reloading
+2025-04-17 23:03:16,451 - werkzeug - INFO -  * Restarting with stat
+2025-04-17 23:03:22,116 - config - INFO - »œ¡ Œ«œ„  Õ·Ì· „—«Ê€… ﬂ—… «·ﬁœ„
+2025-04-17 23:03:22,122 - werkzeug - WARNING -  * Debugger is active!
+2025-04-17 23:03:22,139 - werkzeug - INFO -  * Debugger PIN: 118-215-698
+2025-04-17 23:03:26,857 - werkzeug - INFO -  * Detected change in 'E:\\Glory-of-Youth\\utils.py', reloading
+2025-04-17 23:03:28,230 - werkzeug - INFO -  * Restarting with stat
+2025-04-17 23:03:36,557 - config - INFO - »œ¡ Œ«œ„  Õ·Ì· „—«Ê€… ﬂ—… «·ﬁœ„
+2025-04-17 23:03:36,565 - werkzeug - WARNING -  * Debugger is active!
+2025-04-17 23:03:36,586 - werkzeug - INFO -  * Debugger PIN: 118-215-698
+2025-04-17 23:03:43,296 - werkzeug - INFO -  * Detected change in 'E:\\Glory-of-Youth\\app.py', reloading
+2025-04-17 23:03:44,046 - werkzeug - INFO -  * Restarting with stat
+2025-04-17 23:03:49,353 - config - INFO - Starting football dribbling analysis server
+2025-04-17 23:03:49,358 - werkzeug - WARNING -  * Debugger is active!
+2025-04-17 23:03:49,376 - werkzeug - INFO -  * Debugger PIN: 118-215-698
+2025-04-17 23:03:51,216 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:51] "GET / HTTP/1.1" 200 -
+2025-04-17 23:03:51,238 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:51] "GET / HTTP/1.1" 200 -
+2025-04-17 23:03:51,308 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:51] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:03:51,311 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:51] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:03:51,331 - config - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:03:51,331 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:51] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:03:52,981 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:52] "GET / HTTP/1.1" 200 -
+2025-04-17 23:03:53,002 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:53] "GET / HTTP/1.1" 200 -
+2025-04-17 23:03:53,016 - config - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:03:53,017 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:53] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:03:53,212 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:53] "GET / HTTP/1.1" 200 -
+2025-04-17 23:03:53,232 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:53] "GET / HTTP/1.1" 200 -
+2025-04-17 23:03:53,245 - config - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:03:53,245 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:53] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:03:53,381 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:53] "GET / HTTP/1.1" 200 -
+2025-04-17 23:03:53,404 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:53] "GET / HTTP/1.1" 200 -
+2025-04-17 23:03:53,419 - config - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:03:53,420 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:53] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:03:58,135 - config - INFO - Starting dribbling analysis of video: uploaded_video_2ee14b8f-5695-44e6-b7fa-8b63ba86aa45.mp4
+2025-04-17 23:03:58,136 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:58] "POST /analyze HTTP/1.1" 200 -
+2025-04-17 23:03:58,143 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:58] "POST /save_analysis_thumbnail HTTP/1.1" 200 -
+2025-04-17 23:03:58,143 - config - INFO - Video properties: 560x496, 30.0 FPS, 312 frames
+2025-04-17 23:03:58,165 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:58] "GET /video_feed HTTP/1.1" 200 -
+2025-04-17 23:03:58,169 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:58] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:03:58,182 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:58] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:03:58,188 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:58] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:03:59,143 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:03:59] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:03:59,596 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:03:59,596 - config - ERROR - Error calling GPT: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:04:05,909 - config - INFO - End of video reached
+2025-04-17 23:04:05,926 - config - INFO - Video analysis completed: 11 dribbles, 6 Feinting moves
+2025-04-17 23:04:06,156 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:04:06,156 - config - ERROR - Error generating GPT summary: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:04:06,156 - config - INFO - Analysis thread completed
+2025-04-17 23:04:51,275 - werkzeug - INFO -  * Detected change in 'E:\\Glory-of-Youth\\app.py', reloading
+2025-04-17 23:04:52,132 - werkzeug - INFO -  * Restarting with stat
+2025-04-17 23:04:58,911 - __main__ - INFO - Starting football dribbling analysis server
+2025-04-17 23:04:58,919 - werkzeug - WARNING -  * Debugger is active!
+2025-04-17 23:04:58,947 - werkzeug - INFO -  * Debugger PIN: 118-215-698
+2025-04-17 23:05:00,890 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:00] "GET / HTTP/1.1" 200 -
+2025-04-17 23:05:00,917 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:00] "GET / HTTP/1.1" 200 -
+2025-04-17 23:05:01,033 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:01] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:05:01,054 - __main__ - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:05:01,055 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:01] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:05:10,074 - __main__ - INFO - Starting dribbling analysis of video: uploaded_video_bd66a2ec-f8fd-4a94-ba3e-620345c46e6e.mp4
+2025-04-17 23:05:10,075 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:10] "POST /analyze HTTP/1.1" 200 -
+2025-04-17 23:05:10,083 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:10] "POST /save_analysis_thumbnail HTTP/1.1" 200 -
+2025-04-17 23:05:10,083 - __main__ - INFO - Video properties: 560x496, 30.0 FPS, 312 frames
+2025-04-17 23:05:10,361 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:10] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:05:10,594 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:10] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:05:11,200 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:11] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:05:11,651 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:11] "GET /video_feed HTTP/1.1" 200 -
+2025-04-17 23:05:12,083 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:12] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:05:12,895 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:05:12,896 - __main__ - ERROR - Error calling GPT: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:05:13,083 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:13] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:05:14,088 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:14] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:05:15,100 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:15] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:05:16,089 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:16] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:05:17,084 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:17] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:05:18,089 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:18] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:05:19,083 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:19] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:05:19,196 - __main__ - INFO - End of video reached
+2025-04-17 23:05:19,216 - __main__ - INFO - Video analysis completed: 11 dribbles, 6 Feinting moves
+2025-04-17 23:05:19,456 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:05:19,457 - __main__ - ERROR - Error generating GPT summary: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:05:19,457 - __main__ - INFO - Analysis thread completed
+2025-04-17 23:05:20,091 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:05:20] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:14:46,000 - werkzeug - INFO -  * Detected change in 'E:\\Glory-of-Youth\\app.py', reloading
+2025-04-17 23:14:46,814 - werkzeug - INFO -  * Restarting with stat
+2025-04-17 23:14:53,238 - __main__ - INFO - Downloaded default alert sound
+2025-04-17 23:14:53,239 - __main__ - INFO - Starting football dribbling analysis server
+2025-04-17 23:14:53,245 - werkzeug - WARNING -  * Debugger is active!
+2025-04-17 23:14:53,262 - werkzeug - INFO -  * Debugger PIN: 118-215-698
+2025-04-17 23:14:55,014 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:14:55] "GET / HTTP/1.1" 200 -
+2025-04-17 23:14:55,124 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:14:55] "GET / HTTP/1.1" 200 -
+2025-04-17 23:14:55,239 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:14:55] "[35m[1mGET /static/alert.mp3 HTTP/1.1[0m" 206 -
+2025-04-17 23:14:55,251 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:14:55] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:14:55,280 - __main__ - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:14:55,281 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:14:55] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:15:01,549 - __main__ - INFO - Starting dribbling analysis of video: uploaded_video_8ba9d392-2e8b-4fdf-91fe-eaab8b318b36.mp4
+2025-04-17 23:15:01,550 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:01] "POST /analyze HTTP/1.1" 200 -
+2025-04-17 23:15:01,561 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:01] "POST /save_analysis_thumbnail HTTP/1.1" 200 -
+2025-04-17 23:15:01,561 - __main__ - INFO - Video properties: 560x496, 30.0 FPS, 312 frames
+2025-04-17 23:15:01,759 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:01] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:15:02,006 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:02] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:15:02,660 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:02] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:03,620 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:03] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:03,637 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:03] "GET /video_feed HTTP/1.1" 200 -
+2025-04-17 23:15:04,569 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:04] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:04,906 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:15:04,906 - __main__ - ERROR - Error calling GPT: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:15:05,559 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:05] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:06,560 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:06] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:06,566 - __main__ - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:15:06,567 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:06] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:15:07,557 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:07] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:08,559 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:08] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:09,559 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:09] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:10,558 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:10] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:11,003 - __main__ - INFO - End of video reached
+2025-04-17 23:15:11,019 - __main__ - INFO - Video analysis completed: 9 dribbles, 6 Feinting moves, 2 bad dribbles
+2025-04-17 23:15:11,382 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:15:11,382 - __main__ - ERROR - Error generating GPT summary: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:15:11,383 - __main__ - INFO - Analysis thread completed
+2025-04-17 23:15:11,565 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:11] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:29,798 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:29] "GET / HTTP/1.1" 200 -
+2025-04-17 23:15:29,822 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:29] "GET / HTTP/1.1" 200 -
+2025-04-17 23:15:29,825 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:29] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:15:29,847 - __main__ - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:15:29,847 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:29] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:15:39,225 - __main__ - INFO - Starting dribbling analysis of video: uploaded_video_21a277d0-c97f-4161-a27e-2e2acb025fb1.mp4
+2025-04-17 23:15:39,226 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:39] "POST /analyze HTTP/1.1" 200 -
+2025-04-17 23:15:39,232 - __main__ - INFO - Video properties: 560x496, 30.0 FPS, 312 frames
+2025-04-17 23:15:39,251 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:39] "POST /save_analysis_thumbnail HTTP/1.1" 200 -
+2025-04-17 23:15:39,253 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:39] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:15:39,254 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:39] "GET /video_feed HTTP/1.1" 200 -
+2025-04-17 23:15:39,262 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:39] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:15:39,272 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:39] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:15:39,281 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:39] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:15:39,285 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:39] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:15:40,233 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:40] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:40,850 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:15:40,850 - __main__ - ERROR - Error calling GPT: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:15:41,236 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:41] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:42,234 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:42] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:43,244 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:43] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:44,236 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:44] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:45,237 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:45] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:46,238 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:46] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:47,014 - __main__ - INFO - End of video reached
+2025-04-17 23:15:47,031 - __main__ - INFO - Video analysis completed: 9 dribbles, 6 Feinting moves, 2 bad dribbles
+2025-04-17 23:15:47,246 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:47] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:47,251 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:15:47,252 - __main__ - ERROR - Error generating GPT summary: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:15:47,252 - __main__ - INFO - Analysis thread completed
+2025-04-17 23:15:48,232 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:48] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:15:49,979 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:49] "GET / HTTP/1.1" 200 -
+2025-04-17 23:15:50,001 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:50] "GET / HTTP/1.1" 200 -
+2025-04-17 23:15:50,022 - __main__ - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:15:50,023 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:15:50] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:16:05,856 - __main__ - INFO - Starting football dribbling analysis server
+2025-04-17 23:16:06,855 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.200:5000
+2025-04-17 23:16:06,855 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-17 23:16:06,857 - werkzeug - INFO -  * Restarting with stat
+2025-04-17 23:16:12,539 - __main__ - INFO - Starting football dribbling analysis server
+2025-04-17 23:16:12,544 - werkzeug - WARNING -  * Debugger is active!
+2025-04-17 23:16:12,562 - werkzeug - INFO -  * Debugger PIN: 118-215-698
+2025-04-17 23:16:14,930 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:14] "GET / HTTP/1.1" 200 -
+2025-04-17 23:16:16,691 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:16] "GET / HTTP/1.1" 200 -
+2025-04-17 23:16:16,840 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:16] "[35m[1mGET /static/alert.mp3 HTTP/1.1[0m" 206 -
+2025-04-17 23:16:16,847 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:16] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:16:16,883 - __main__ - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:16:16,884 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:16] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:16:25,701 - __main__ - INFO - Starting dribbling analysis of video: uploaded_video_c97d5313-3728-4f0e-a8c8-a309083533ec.mp4
+2025-04-17 23:16:25,702 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:25] "POST /analyze HTTP/1.1" 200 -
+2025-04-17 23:16:25,708 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:25] "POST /save_analysis_thumbnail HTTP/1.1" 200 -
+2025-04-17 23:16:25,709 - __main__ - INFO - Video properties: 560x496, 30.0 FPS, 312 frames
+2025-04-17 23:16:25,948 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:25] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:16:26,165 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:26] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:16:26,755 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:26] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:16:27,439 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:27] "GET /video_feed HTTP/1.1" 200 -
+2025-04-17 23:16:27,720 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:27] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:16:28,655 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:16:28,655 - __main__ - ERROR - Error calling GPT: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:16:28,708 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:28] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:16:28,715 - __main__ - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:16:28,716 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:28] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:16:29,709 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:29] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:16:30,708 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:30] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:16:31,714 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:31] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:16:32,715 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:32] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:16:33,708 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:33] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:16:34,715 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:34] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:16:34,942 - __main__ - INFO - End of video reached
+2025-04-17 23:16:34,959 - __main__ - INFO - Video analysis completed: 9 dribbles, 6 Feinting moves, 2 bad dribbles
+2025-04-17 23:16:35,193 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:16:35,193 - __main__ - ERROR - Error generating GPT summary: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:16:35,194 - __main__ - INFO - Analysis thread completed
+2025-04-17 23:16:35,708 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:16:35] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:07,318 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:07] "GET / HTTP/1.1" 200 -
+2025-04-17 23:17:07,339 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:07] "GET / HTTP/1.1" 200 -
+2025-04-17 23:17:07,342 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:07] "[35m[1mGET /static/alert.mp3 HTTP/1.1[0m" 206 -
+2025-04-17 23:17:07,344 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:07] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:17:07,370 - __main__ - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:17:07,371 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:07] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:17:14,928 - __main__ - INFO - Starting dribbling analysis of video: uploaded_video_a1f8e402-4727-48d1-94f5-2294069e2154.mp4
+2025-04-17 23:17:14,929 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:14] "POST /analyze HTTP/1.1" 200 -
+2025-04-17 23:17:14,935 - __main__ - INFO - Video properties: 560x496, 30.0 FPS, 312 frames
+2025-04-17 23:17:14,949 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:14] "POST /save_analysis_thumbnail HTTP/1.1" 200 -
+2025-04-17 23:17:14,953 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:14] "GET /video_feed HTTP/1.1" 200 -
+2025-04-17 23:17:14,957 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:14] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:17:14,963 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:14] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:17:15,935 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:15] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:16,398 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:17:16,399 - __main__ - ERROR - Error calling GPT: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:17:16,939 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:16] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:17,936 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:17] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:18,946 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:18] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:19,937 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:19] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:20,938 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:20] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:21,938 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:21] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:22,519 - __main__ - INFO - End of video reached
+2025-04-17 23:17:22,535 - __main__ - INFO - Video analysis completed: 9 dribbles, 6 Feinting moves, 2 bad dribbles
+2025-04-17 23:17:22,770 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:17:22,771 - __main__ - ERROR - Error generating GPT summary: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:17:22,771 - __main__ - INFO - Analysis thread completed
+2025-04-17 23:17:22,947 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:22] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:39,662 - __main__ - INFO - Starting football dribbling analysis server
+2025-04-17 23:17:40,663 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.200:5000
+2025-04-17 23:17:40,663 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-17 23:17:40,665 - werkzeug - INFO -  * Restarting with stat
+2025-04-17 23:17:45,633 - __main__ - INFO - Starting football dribbling analysis server
+2025-04-17 23:17:45,639 - werkzeug - WARNING -  * Debugger is active!
+2025-04-17 23:17:45,656 - werkzeug - INFO -  * Debugger PIN: 118-215-698
+2025-04-17 23:17:46,855 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:46] "GET / HTTP/1.1" 200 -
+2025-04-17 23:17:46,922 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:46] "GET / HTTP/1.1" 200 -
+2025-04-17 23:17:47,013 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:47] "[35m[1mGET /correct_movements.mp4 HTTP/1.1[0m" 206 -
+2025-04-17 23:17:47,031 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:47] "[35m[1mGET /static/alert.mp3 HTTP/1.1[0m" 206 -
+2025-04-17 23:17:47,067 - __main__ - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:17:47,068 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:47] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:17:53,542 - __main__ - INFO - Starting dribbling analysis of video: uploaded_video_8f3a94ca-6c4b-4e83-8bba-b4ac1ba979c8.mp4
+2025-04-17 23:17:53,543 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:53] "POST /analyze HTTP/1.1" 200 -
+2025-04-17 23:17:53,549 - __main__ - INFO - Video properties: 560x496, 30.0 FPS, 312 frames
+2025-04-17 23:17:53,565 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:53] "POST /save_analysis_thumbnail HTTP/1.1" 200 -
+2025-04-17 23:17:54,606 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:54] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:55,104 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:55] "GET /video_feed HTTP/1.1" 200 -
+2025-04-17 23:17:55,556 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:55] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:56,510 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:17:56,511 - __main__ - ERROR - Error calling GPT: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:17:56,561 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:56] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:56,567 - __main__ - ERROR - Error serving favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-04-17 23:17:56,567 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:56] "GET /favicon.ico HTTP/1.1" 200 -
+2025-04-17 23:17:57,557 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:57] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:58,551 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:58] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:17:59,550 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:17:59] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:18:00,551 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:18:00] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:18:01,551 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:18:01] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:18:02,551 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:18:02] "GET /analysis_status HTTP/1.1" 200 -
+2025-04-17 23:18:02,907 - __main__ - INFO - End of video reached
+2025-04-17 23:18:02,926 - __main__ - INFO - Video analysis completed: 9 dribbles, 6 Feinting moves, 2 bad dribbles
+2025-04-17 23:18:03,189 - openai - INFO - error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+2025-04-17 23:18:03,189 - __main__ - ERROR - Error generating GPT summary: Incorrect API key provided: sk-proj-********************************************************************************************************************************************************OhsA. You can find your API key at https://platform.openai.com/account/api-keys.
+2025-04-17 23:18:03,190 - __main__ - INFO - Analysis thread completed
+2025-04-17 23:18:03,561 - werkzeug - INFO - 192.168.0.200 - - [17/Apr/2025 23:18:03] "GET /analysis_status HTTP/1.1" 200 -

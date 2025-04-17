@@ -42,7 +42,7 @@ pose_landmark_drawing_spec = mp_drawing.DrawingSpec(color=(255, 0, 0), thickness
 # Global variables for video streaming
 output_frame = None
 lock = threading.Lock()
-analysis_results = {"dribbles": 0, "Feinting": 0, "warnings": "", "tips": "", "time": 0}
+analysis_results = {"dribbles": 0, "Feinting": 0, "warnings": "", "tips": "", "time": 0, "bad_dribbles": 0}
 is_analyzing = False
 
 # Define a class for movement tracking with Kalman filtering for smoother predictions
@@ -168,6 +168,11 @@ def serve_html(path):
         logger.error(f"Error serving {path}: {e}")
         return f"Error loading {path}. File may not exist."
 
+# Route for serving static files like audio files
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('static', filename)
+
 def generate_frames():
     global output_frame, lock, is_analyzing
     
@@ -223,9 +228,18 @@ def analysis_status():
     """Route to get the current analysis results."""
     global analysis_results, is_analyzing
     try:
+        has_new_warning = False
+        if analysis_results.get("warnings", "") and not hasattr(analysis_status, "last_warning"):
+            analysis_status.last_warning = ""
+            
+        if analysis_results.get("warnings", "") != getattr(analysis_status, "last_warning", ""):
+            has_new_warning = True
+            analysis_status.last_warning = analysis_results.get("warnings", "")
+        
         return jsonify({
             "is_analyzing": is_analyzing,
-            "results": analysis_results
+            "results": analysis_results,
+            "new_warning": has_new_warning
         })
     except Exception as e:
         logger.error(f"Error in analysis_status: {e}")
@@ -433,12 +447,16 @@ def analyze_video_thread(video_path, analysis_id):
         
         # Football metrics - FOCUS ONLY ON DRIBBLING
         dribbles_counter = 0
+        bad_dribbles_counter = 0  # New counter for bad dribbles
         ball_control_score = 100
         dribble_quality_sum = 0  # For tracking average quality
         
+        # Bad dribble reasons tracking
+        bad_dribble_reasons = {}  # To track reasons for bad dribbles
+        
         # Skill-specific metrics for Feinting (rapid dribbling)
         Feinting_counter = 0
-        _quality = 0
+        Feinting_quality = 0  # Initialize the missing variable
         last_Feinting_time = 0
         Feinting_sequence = []
         
@@ -457,7 +475,8 @@ def analyze_video_thread(video_path, analysis_id):
         # Event cooldowns to prevent duplicate detections
         event_cooldowns = {
             "dribble": 0,
-            "Feinting": 0
+            "Feinting": 0,
+            "warning": 0  # Add cooldown for warnings
         }
         
         # Use a less complex model for better performance and stability
@@ -639,10 +658,9 @@ def analyze_video_thread(video_path, analysis_id):
                                     # 1. Dribble detection - FOCUS ON THIS - تحسين معايير الاكتشاف
                                     if ball_detected and event_cooldowns["dribble"] == 0:
                                         # حساب المسافة بين الكرة وأقرب قدم
-                                        min_foot_dist = min(
-                                            calculate_distance(left_foot_px, ball_position),
-                                            calculate_distance(right_foot_px, ball_position)
-                                        )
+                                        left_foot_ball_dist = calculate_distance(left_foot_px, ball_position)
+                                        right_foot_ball_dist = calculate_distance(right_foot_px, ball_position)
+                                        min_foot_dist = min(left_foot_ball_dist, right_foot_ball_dist)
                                         
                                         # حساب سرعة القدمين
                                         foot_speeds = [left_speed, right_speed]
@@ -651,6 +669,24 @@ def analyze_video_thread(video_path, analysis_id):
                                         # ===== معايير اكتشاف المراوغة الأساسية - أكثر حساسية =====
                                         # المراوغة الأساسية: الكرة قريبة من القدمين + حركة القدمين
                                         basic_dribble = min_foot_dist < 80 and max_foot_speed > 60
+                                        
+                                        # فحص إضافي لتحديد المراوغات الخاطئة
+                                        is_bad_dribble = False
+                                        bad_dribble_reason = ""
+                                        
+                                        # المراوغة تعتبر خاطئة إذا:
+                                        if min_foot_dist > 80 and min_foot_dist < 120 and max_foot_speed > 40:
+                                            # الكرة بعيدة عن القدمين لكن هناك محاولة للمراوغة
+                                            is_bad_dribble = True
+                                            bad_dribble_reason = "The ball is too far from feet"
+                                        elif min_foot_dist < 80 and max_foot_speed < 40:
+                                            # الكرة قريبة لكن حركة القدمين بطيئة جداً
+                                            is_bad_dribble = True
+                                            bad_dribble_reason = "Foot movement is too slow"
+                                        elif left_leg_angle > 160 and right_leg_angle > 160 and min_foot_dist < 100:
+                                            # الساقين مستقيمتين أثناء المراوغة (غير مرن)
+                                            is_bad_dribble = True
+                                            bad_dribble_reason = "Knees are too straight"
                                         
                                         # اكتشاف المراوغة بغض النظر عن انثناء الركبتين
                                         if basic_dribble:
@@ -677,6 +713,24 @@ def analyze_video_thread(video_path, analysis_id):
                                             quality_percent = int(quality_score * 100)
                                             cv2.putText(image, f"DRIBBLE! {quality_percent}%", (150, 60), 
                                                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+                                        elif is_bad_dribble:
+                                            # تسجيل المراوغة الخاطئة
+                                            bad_dribbles_counter += 1
+                                            event_cooldowns["dribble"] = 8
+                                            
+                                            # تتبع أسباب المراوغة الخاطئة
+                                            if bad_dribble_reason in bad_dribble_reasons:
+                                                bad_dribble_reasons[bad_dribble_reason] += 1
+                                            else:
+                                                bad_dribble_reasons[bad_dribble_reason] = 1
+                                                
+                                            # عرض تحذير المراوغة الخاطئة
+                                            cv2.putText(image, f"BAD DRIBBLE: {bad_dribble_reason}", (120, 60), 
+                                                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                                                       
+                                            # تعيين التحذير لتشغيل الصوت
+                                            warning = bad_dribble_reason
+                                            event_cooldowns["warning"] = 5  # حتى لا يتكرر التحذير كثيراً
                                     
                                     # 2. Feinting detection - تحسين اكتشاف الخوزامية - معايير أكثر حساسية
                                     if ball_detected and event_cooldowns["Feinting"] == 0:
@@ -727,14 +781,31 @@ def analyze_video_thread(video_path, analysis_id):
                                                 cv2.putText(image, f"Feinting! {quality_percent}%", (220, 80), 
                                                            cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 255), 2)
                                     
-                                    # تعديل التحذيرات - الحد الأدنى منها
-                                    warning = ""  # إعادة تعيين التحذير
-                                    
-                                    # تحذير واحد فقط للمساعدة في تحسين الأداء إذا كانت المسافة بعيدة جدًا
-                                    if ball_detected and min_foot_dist > 120:
-                                        warning = "Try to keep the ball closer to your feet for better control."
-                                        # لا نخفض الدرجات كثيرًا
-                                        ball_control_score -= 0.1
+                                    # تحسين التحذيرات لتشغيل التنبيهات الصوتية
+                                    if warning == "" and ball_detected and event_cooldowns["warning"] == 0:
+                                        # حساب المسافة بين الكرة وأقرب قدم
+                                        min_foot_dist = min(
+                                            calculate_distance(left_foot_px, ball_position),
+                                            calculate_distance(right_foot_px, ball_position)
+                                        )
+                                        
+                                        # Warning conditions
+                                        if min_foot_dist > 120:
+                                            warning = "Try to keep the ball closer to your feet for better control."
+                                            ball_control_score -= 0.1
+                                            event_cooldowns["warning"] = 10
+                                        elif min_foot_dist > 100 and (left_speed > 50 or right_speed > 50):
+                                            warning = "The ball is getting too far from your feet while moving."
+                                            ball_control_score -= 0.05
+                                            event_cooldowns["warning"] = 10
+                                        elif left_leg_angle > 160 and right_leg_angle > 160 and min_foot_dist < 100:
+                                            warning = "Keep your knees slightly bent for better balance and control."
+                                            performance_score -= 0.1
+                                            event_cooldowns["warning"] = 10
+                                        elif max(left_speed, right_speed) < 30 and min_foot_dist < 80:
+                                            warning = "Try to increase your foot speed during dribbling."
+                                            performance_score -= 0.1
+                                            event_cooldowns["warning"] = 10
                                     
                                     if warning:
                                         warnings_list.append(warning)
@@ -766,9 +837,13 @@ def analyze_video_thread(video_path, analysis_id):
                     cv2.putText(image, f"Dribbles: {dribbles_counter}", (30, 30), 
                                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
                     
+                    # Add bad dribbles counter
+                    cv2.putText(image, f"Bad: {bad_dribbles_counter}", (180, 30), 
+                               cv2.FONT_HERSHEY_SIMPLEX, 0.8, (100, 100, 255), 2)
+                    
                     # Add Feinting counter
                     Feinting_color = (0, 255, 255) if Feinting_counter > 0 else (200, 200, 200)
-                    cv2.putText(image, f"Feinting: {Feinting_counter}", (250, 30), 
+                    cv2.putText(image, f"Feinting: {Feinting_counter}", (280, 30), 
                                cv2.FONT_HERSHEY_SIMPLEX, 0.8, Feinting_color, 2)
                     
                     # Time display
@@ -868,11 +943,13 @@ def analyze_video_thread(video_path, analysis_id):
                             "dribble_quality": round(avg_dribble_quality * 100, 1),
                             "Feinting": Feinting_counter,
                             "Feinting_quality": round(Feinting_avg_quality * 100, 1),
-                            "warnings": "; ".join(set(warnings_list[-10:])) if warnings_list else "",
+                            "warnings": warning if warning else "",  # Add latest warning for sound alert
                             "tips": gpt_tips_for_overlay,
                             "time": round(elapsed_time, 2),
                             "performance": int(performance_score),
-                            "ball_control": int(ball_control_score)
+                            "ball_control": int(ball_control_score),
+                            "bad_dribbles": bad_dribbles_counter,
+                            "bad_dribble_reasons": bad_dribble_reasons
                         }
                         analysis_results = current_results
                         
@@ -897,7 +974,7 @@ def analyze_video_thread(video_path, analysis_id):
         
         # Release resources
         cap.release()
-        logger.info(f"Video analysis completed: {dribbles_counter} dribbles, {Feinting_counter} Feinting moves")
+        logger.info(f"Video analysis completed: {dribbles_counter} dribbles, {Feinting_counter} Feinting moves, {bad_dribbles_counter} bad dribbles")
         
         # Final update with analysis complete
         # Calculate averages
@@ -913,10 +990,19 @@ def analyze_video_thread(video_path, analysis_id):
         # Create final summary
         with lock:
             analysis_results["analysis_complete"] = True
+            analysis_results["bad_dribbles"] = bad_dribbles_counter
+            
+            # Transform bad_dribble_reasons to a list of tuples for easier handling in frontend
+            bad_dribble_reasons_list = []
+            for reason, count in bad_dribble_reasons.items():
+                bad_dribble_reasons_list.append((reason, count))
+            analysis_results["bad_dribble_reasons"] = sorted(bad_dribble_reasons_list, key=lambda x: x[1], reverse=True)
             
             if analysis_id in analysis_storage:
                 analysis_storage[analysis_id]["completed"] = True
                 analysis_storage[analysis_id]["timestamp"] = time.strftime("%Y-%m-%d %H:%M:%S")
+                analysis_storage[analysis_id]["bad_dribbles"] = bad_dribbles_counter
+                analysis_storage[analysis_id]["bad_dribble_reasons"] = sorted(bad_dribble_reasons_list, key=lambda x: x[1], reverse=True)
                 
                 # Calculate dribbling-specific skill levels
                 skill_ratings = {
@@ -957,6 +1043,7 @@ def analyze_video_thread(video_path, analysis_id):
                             f"- Duration: {round(elapsed_time, 1)} seconds\n"
                             f"- Dribbles: {dribbles_counter}\n"
                             f"- Dribble quality score: {round(avg_dribble_quality * 100)}%\n"
+                            f"- Bad dribbles: {bad_dribbles_counter}\n"
                             f"- Feinting moves: {Feinting_counter}\n"
                             f"- Feinting quality: {round(Feinting_avg_quality * 100)}%\n"
                             f"- Ball control: {int(ball_control_score)}%\n\n"
@@ -979,7 +1066,7 @@ def analyze_video_thread(video_path, analysis_id):
                             logger.error(f"Error generating GPT summary: {gpt_error}")
                             # Create a positive fallback summary for dribbling
                             analysis_storage[analysis_id]["summary"] = (
-                                f"You showed outstanding performance with{dribbles_counter} Strong dribble and{Feinting_counter} Good technique Feinting movement "
+                                f"You showed outstanding performance with {dribbles_counter} Strong dribble and {Feinting_counter} Good technique Feinting movement "
                                 f"Your ball control was {int(ball_control_score)}%. "
                                 f"\n\nTo develop, focus on: "
                                 f"\n1. Keeping your knees slightly bent for more flexibility and control while dribbling."
@@ -989,8 +1076,8 @@ def analyze_video_thread(video_path, analysis_id):
                     else:
                         # No API key available
                         analysis_storage[analysis_id]["summary"] = (
-                            f"Dribbling analysis complete.{dribbles_counter}  showed good dribbling and"
-                            f"{Feinting_counter} Feinting movement over{round(elapsed_time)} seconds with a control level of{int(ball_control_score)}%."
+                            f"Dribbling analysis complete. {dribbles_counter} showed good dribbling and "
+                            f"{Feinting_counter} Feinting movement over {round(elapsed_time)} seconds with a control level of {int(ball_control_score)}%."
                             f" Continue to keep the ball close to your feet and develop speed in changing feet in Feinting!"
                         )
                 except Exception as summary_error:
@@ -1136,6 +1223,23 @@ def clear_old_analysis():
         logger.error(f"Error clearing old analyses: {e}")
         return jsonify({"error": str(e)}), 500
 
+# Make sure we have a static directory for audio files
+if not os.path.exists('static'):
+    os.makedirs('static')
+
+# Create a default alert sound if one doesn't exist
+if not os.path.exists('static/alert.mp3'):
+    try:
+        # Try to download a default alert sound
+        import urllib.request
+        urllib.request.urlretrieve(
+            "https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3",
+            "static/alert.mp3"
+        )
+        logger.info("Downloaded default alert sound")
+    except Exception as e:
+        logger.error(f"Could not download alert sound: {e}")
+
 if __name__ == '__main__':
     # Make sure the necessary files exist
     for required_file in ['home_dribbling.html', 'coach_dribbling.html']:
@@ -1145,7 +1249,4 @@ if __name__ == '__main__':
             print("Make sure these HTML files are in the same directory as app.py")
     
     logger.info("Starting football dribbling analysis server")
-    app.run(debug=True, host='0.0.0.0', port=5000, threaded=True)  
-
-
-    
+    app.run(debug=True, host='0.0.0.0', port=5000, threaded=True)
